@@ -1,6 +1,6 @@
 var pg = require('pg');
 
-var connectionString = 'postgres://localhost:5432/lecture';
+var connectionString = 'postgres://localhost:5432/tuesday';
 
 var initialize = function() {
   pg.connect(connectionString, function(err, client, done){
@@ -12,7 +12,10 @@ var initialize = function() {
       var query = client.query('CREATE TABLE IF NOT EXISTS people (' +
       'id serial PRIMARY KEY,' +
       'name varchar(80) NOT NULL,' +
-      'address text)');
+      'address text,' +
+      'city varchar(100) NOT NULL,' +
+      'state varchar(3) NOT NULL,' +
+      'zip_code varchar(5) NOT NULL)');
 
       query.on('end', function(){
         console.log('Successfully created schema');
